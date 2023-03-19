@@ -1,0 +1,40 @@
+//# address-hook(0x010bba) end(0x010c8e)
+function void Character.UpdateNormalState.Sonic()
+{
+	TransformHandler()
+	base.Character.UpdateNormalState.Sonic()
+}
+
+//# address-hook(0x0137c4) end(0x0138f4)
+function void Character.UpdateNormalState.Tails()
+{
+	TransformHandler()
+	base.Character.UpdateNormalState.Tails()
+}
+
+//# address-hook(0x01656c) end(0x016640)
+function void Character.UpdateNormalState.Knuckles()
+{
+	TransformHandler()
+	base.Character.UpdateNormalState.Knuckles()
+}
+
+function bool ExtraChar.updateNormalState()
+{
+	TransformHandler()
+	return base.ExtraChar.updateNormalState()
+}
+
+function void TransformHandler()
+{
+	if (TransformStyle && global.zone != 0x0c)
+	{
+		if (isCharTransforming())
+			char.groundspeed = char.velocity.x = char.velocity.y = 0 // It's all on one line, they all equal 0 :)
+	}
+}
+
+function bool isCharTransforming()
+{
+	return (char.state == char.state.TAILS_TRANSFORM || char.state == char.state.TRANSFORMING)
+}

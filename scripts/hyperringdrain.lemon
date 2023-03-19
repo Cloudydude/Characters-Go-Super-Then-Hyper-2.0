@@ -1,0 +1,15 @@
+//# address-hook(0x011b26) end(0x011bdc)
+function void Character.UpdateRingsInSuperForm()
+{
+	base.Character.UpdateRingsInSuperForm()
+	if (HyperRingDrain && (super.active & 0x80 || super.active.tails & 0x80))
+	{
+		// This dirty flag is only set when game progress is not paused (think of cutscenes)
+		if (hud.dirty.timer)
+		{
+			// Countdown the frames until next ring gets consumed
+			if !(super.ring_dec.frames <= 1)
+				--super.ring_dec.frames
+		}
+	}
+}

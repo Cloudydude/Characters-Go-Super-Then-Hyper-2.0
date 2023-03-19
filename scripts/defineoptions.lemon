@@ -1,0 +1,10 @@
+global bool TransformStyle
+global u8 HyperRingCost
+global bool HyperRingDrain
+global bool DDZFormChooser
+
+global bool SuperSonicStars
+global bool SuperKnuxStars
+
+global bool HyperSonicStars
+global bool HyperKnuxStars

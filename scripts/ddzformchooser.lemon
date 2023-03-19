@@ -1,0 +1,9 @@
+//# address-hook(0x08167c) end(0x0816ee)
+function void fn08167c()
+{
+	u8 emeraldBank = global.super_emeralds
+	if (!DDZFormChooser)
+		global.super_emeralds = 0
+	base.fn08167c()
+	global.super_emeralds = emeraldBank
+}

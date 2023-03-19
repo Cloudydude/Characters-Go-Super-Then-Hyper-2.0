@@ -1,0 +1,163 @@
+function bool Character.performSuperTransformation()
+{
+	if (u8[0xffffe654] == 17 || u8[0xffffe654] == 73)
+		return false
+	// Already super?
+	if (super.active == 0xff || super.active.tails == 0xff)
+		return false
+	if (!System.getGlobalVariableValueByName("original_mode") && !Input.buttonPressed(BUTTON_Y)) // DA Garden
+		return false
+
+	u8 possibleSuperForm = 0	// 1 for Super, 2 for Hyper
+
+	// Tails is first player?
+	if (char.character == CHARACTER_TAILS)
+	{
+		if (!isMainCharacter(CHARACTER_TAILS))
+			return false
+	}
+
+	// Special handling for Tails
+	if (char.character == CHARACTER_TAILS)
+	{
+		// Ready to get Super Tails?
+		if (global.super_emeralds >= 7)
+		{
+			if (super.active || super.active.tails)
+				possibleSuperForm = 2
+			else
+				possibleSuperForm = 1
+		}
+		else if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0)
+		{
+			possibleSuperForm = 1
+		}
+	}
+	else
+	{
+		// Can go super?
+		if (global.super_emeralds >= 7)
+		{
+			if (super.active || super.active.tails)
+				possibleSuperForm = 2
+			else
+				possibleSuperForm = 1
+		}
+		else if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0)
+			possibleSuperForm = 1
+	}
+
+	if (possibleSuperForm == 0)
+		return false
+
+	u8 RingRequirement = 50
+	if (super.active || super.active.tails)
+		RingRequirement = (!HyperRingCost) ? 50 : (HyperRingCost == 1) ? 75 : 100
+
+	if (ring_counter < RingRequirement || !hud.dirty.timer || char.control_flags != 0)	// Last check is needed e.g. for the snowboarding section
+		return false
+
+	if (char.character == CHARACTER_SONIC)
+	{
+		char.mapping_offset = 0x146816
+		char.state = char.state.TRANSFORMING
+
+		if (possibleSuperForm == 2)
+		{
+			super.active = 0xff
+			if (HyperSonicStars)
+			{
+				u32[0xffffcd7c] = 0x019348
+				u32[0xffffcbc0] = 0x01a494
+			}
+		}
+		else
+		{
+			super.active = 1
+			if (SuperSonicStars)
+				u32[0xffffcbc0] = 0x019156
+		}
+	}
+	else if (char.character == CHARACTER_TAILS)
+	{
+		super.active.tails = 1
+		char.state = char.state.TAILS_TRANSFORM
+
+		if (possibleSuperForm == 2)
+		{
+			// Call the flicky army of death
+			u32[0xffffcd7c] = 0x01a170
+
+		#if STANDALONE
+			super.active.tails = 0xff
+		#endif
+		}
+		else
+		{
+			super.active.tails = 1
+			u32[0xffffcbc0] = 0x019156
+		}
+	}
+	else if (char.character == CHARACTER_KNUCKLES)
+	{
+		char.state = char.state.TRANSFORMING
+
+		if (possibleSuperForm == 2)
+		{
+			super.active = 0xff
+			if (HyperKnuxStars)
+			{
+				u32[0xffffcd7c] = 0x019348
+				u32[0xffffcbc0] = 0x01a494
+			}
+			else
+				u32[0xffffcbc0] = 0x01a494
+		}
+		else
+		{
+			super.active = 1
+			if (SuperKnuxStars)
+				u32[0xffffcbc0] = 0x019156
+		}
+	}
+
+#if STANDALONE
+	if (super.active == 0xff)
+	{
+		// Stop drowning music
+		if (char.drown_countdown < 12)
+			playMusic(MUSIC_CTRL_FADEOUT)
+
+		// Reset drowning countdown
+		char.drown_countdown = 30
+	}
+#endif
+
+
+	if (super.active == 1 || super.active.tails == 1)
+	{
+		super.palettefx.state = 1
+		super.palettefx.timer = 0x0f
+		super.ring_dec.frames = 60
+		char.control_flags = 0x81
+	}
+	playSound(SFX_SUPERTRANSFORM)
+#if STANDALONE
+	chooseFittingMusic()	// Usually switches to super theme
+#else
+	playMusic(MUSIC_INVINCIBLE)
+#endif
+
+	setSpeedCapProperties(A4)
+
+	char.invinc.countdown = 0
+	char.bonus_effect |= char.bonus.INVINCIBLE
+
+#if STANDALONE
+	if (super.active == 0xff || super.active.tails == 0xff)
+	{
+		Game.setAchievementComplete(ACHIEVEMENT_GOING_HYPER)
+	}
+#endif
+	return true
+}

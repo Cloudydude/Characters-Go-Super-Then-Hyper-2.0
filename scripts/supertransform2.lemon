@@ -1,0 +1,66 @@
+//# address-hook(0x0118bc) end(0x011afc)
+function void UpdateSonicJumpMoves()
+{
+	SuperThenHyperfunc()
+	Character.updateJumpMoves()
+}
+
+//# address-hook(0x0150da) end(0x0151f6)
+function void UpdateTailsJumpMoves()
+{
+	SuperThenHyperfunc()
+	base.UpdateTailsJumpMoves()
+}
+
+//# address-hook(0x0177ea) end(0x017938)
+function void UpdateKnucklesJumpMoves()
+{
+	SuperThenHyperfunc()
+	base.UpdateKnucklesJumpMoves()
+}
+
+function void SuperThenHyperfunc()
+{
+	u8 input_state     = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state
+	u8 input_pressed   = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
+	bool isSuperActive = (char.character == CHARACTER_TAILS) ? super.active.tails    : super.active
+
+	if (char.jumping)
+	{
+		// Limit velocity.y
+		s16 max_vy = (char.flags & char.flag.UNDERWATER) ? -0x200 : -0x400
+		if (char.velocity.y < max_vy)
+		{
+			// Limit vertical velocity while not pressing any jump button
+			//  -> This is important to support low jumps by just tapping the button briefly
+			if ((input_state & CONTROL_ABC) == 0)
+			{
+				char.velocity.y = max_vy
+			}
+		}
+		else
+		{
+			if (char.double_jump_state == 0)
+			{
+				#if STANDALONE
+					if (Input.buttonPressed(BUTTON_Y) && !System.getGlobalVariableValueByName("original_mode"))
+					{
+						if ((super.active == 0xff || super.active.tails == 0xff) == 0 && char.invuln.countdown == 0)	// Check invulnerability to prevent spamming of super activate + cancel
+						{
+							if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0 && super.active)
+							{
+								char.jumping = 0
+								return
+							}
+							if (Character.performSuperTransformation())
+							{
+								char.jumping = 0
+								return
+							}
+						}
+					}
+				#endif
+			}
+		}
+	}
+}
