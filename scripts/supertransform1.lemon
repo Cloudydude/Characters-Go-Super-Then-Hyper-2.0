@@ -18,19 +18,12 @@ function bool Character.performSuperTransformation()
 	}
 
 	// Special handling for Tails
-	if (char.character == CHARACTER_TAILS)
+	if (char.character == CHARACTER_TAILS && !Game.getSetting(SETTING_HYPER_TAILS))
 	{
 		// Ready to get Super Tails?
 		if (global.super_emeralds >= 7)
 		{
-			if (super.active || super.active.tails)
-				possibleSuperForm = 2
-			else
-				possibleSuperForm = 1
-		}
-		else if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0)
-		{
-			possibleSuperForm = 1
+			possibleSuperForm = 2
 		}
 	}
 	else
@@ -134,7 +127,7 @@ function bool Character.performSuperTransformation()
 #endif
 
 
-	if (super.active == 1 || super.active.tails == 1)
+	if (super.active == 1 || super.active.tails == 1 || (!Game.getSetting(SETTING_HYPER_TAILS) && super.active.tails == 0xff))
 	{
 		super.palettefx.state = 1
 		super.palettefx.timer = 0x0f
