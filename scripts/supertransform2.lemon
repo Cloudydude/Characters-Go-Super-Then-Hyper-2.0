@@ -47,7 +47,7 @@ function void SuperThenHyperfunc()
 					{
 						if ((super.active == 0xff || super.active.tails == 0xff) == 0 && char.invuln.countdown == 0)	// Check invulnerability to prevent spamming of super activate + cancel
 						{
-							if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0 && super.active)
+							if (global.chaos_emeralds >= 7 && global.traded_emeralds == 0 && (super.active == 1 || super.active.tails == 1))
 							{
 								char.jumping = 0
 								return
