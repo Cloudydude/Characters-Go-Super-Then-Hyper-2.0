@@ -4,7 +4,7 @@
 		"Name": "Characters Go Super Then Hyper",
 		"Author": "iCloudius, Blu=",
 		"Description": "Lets' you go have more control over your super forms.",
-		"ModVersion": "2.1",
+		"ModVersion": "2.0",
 		"GameVersion": "20.07.24.0"
 	},
 "Settings":
@@ -38,7 +38,7 @@
 		{
 			"InternalName": "STailsStars",
 			"DisplayName": "Super Tails Stars",
-			"Variable": "SuperTaisStars",
+			"Variable": "SuperTailsStars",
 			"DefaultValue": "0",
 			"Category": "Visual Options",
 			"Options":
