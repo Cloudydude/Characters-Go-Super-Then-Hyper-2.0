@@ -88,7 +88,7 @@ function bool Character.performSuperTransformation()
 		else
 		{
 			super.active.tails = 1
-			if (SuperTaisStars)
+			if (SuperTailsStars)
 				u32[0xffffcbc0] = 0x019156
 		}
 	}
