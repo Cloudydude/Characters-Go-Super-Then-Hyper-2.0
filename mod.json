@@ -3,123 +3,151 @@
 	{
 		"Name": "Characters Go Super Then Hyper",
 		"Author": "iCloudius, Blu=",
-		"Description": "Lets' you go have more control over your super forms.",
-		"ModVersion": "2.2",
+		"UniqueID": "super-then-hyper-2",
+		"Description": "Lets you go have more control over your super forms.",
+		"ModVersion": "2.3",
 		"GameVersion": "20.07.24.0"
 	},
-"Settings":
-{
 	"Settings":
-	[
-		{
-			"InternalName": "TransformStyle",
-			"DisplayName": "Transform Style",
-			"Variable": "TransformStyle",
-			"DefaultValue": "0",
-			"Category": "Visual Options",
-			"Options":
+	{
+		"Settings":
+		[
 			{
-				"0": "Sonic 3 & Knuckles",
-				"1": "Sonic Mania"
+				"InternalName": "TransformStyle",
+				"DisplayName": "Transform Style",
+				"Variable": "TransformStyle",
+				"DefaultValue": "0",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Sonic 3 & Knuckles",
+					"1": "Sonic Mania"
+				}
+			},
+			{
+				"InternalName": "SSonicStars",
+				"DisplayName": "Super Sonic Stars",
+				"Variable": "SuperSonicStars",
+				"DefaultValue": "1",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Off",
+					"1": "On"
+				}
+			},
+			{
+				"InternalName": "STailsStars",
+				"DisplayName": "Super Tails Stars",
+				"Variable": "SuperTailsStars",
+				"DefaultValue": "0",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Off",
+					"1": "On"
+				}
+			},
+			{
+				"InternalName": "SKnuxStars",
+				"DisplayName": "Super Knuckles Stars",
+				"Variable": "SuperKnuxStars",
+				"DefaultValue": "1",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Off",
+					"1": "On"
+				}
+			},
+			{
+				"InternalName": "HSonicStars",
+				"DisplayName": "Hyper Sonic Stars",
+				"Variable": "HyperSonicStars",
+				"DefaultValue": "1",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Off",
+					"1": "On"
+				}
+			},
+			{
+				"InternalName": "HKnuxStars",
+				"DisplayName": "Hyper Knuckles Stars",
+				"Variable": "HyperKnuxStars",
+				"DefaultValue": "0",
+				"Category": "Visual Options",
+				"Options":
+				{
+					"0": "Off",
+					"1": "On"
+				}
+			},
+			{
+				"InternalName": "HyperCost",
+				"DisplayName": "Hyper Ring Cost",
+				"Variable": "HyperRingCost",
+				"DefaultValue": "0",
+				"Category": "Gameplay Options",
+				"Options":
+				{
+					"0": "50 Rings",
+					"1": "75 Rings",
+					"2": "100 Rings"
+				}
+			},
+			{
+				"InternalName": "HyperRingDrain",
+				"DisplayName": "Hyper Ring Drain Speed",
+				"Variable": "HyperRingDrain",
+				"DefaultValue": "0",
+				"Category": "Gameplay Options",
+				"Options":
+				{
+					"0": "1x",
+					"1": "2x"
+				}
+			},
+			{
+				"InternalName": "DDZFormChooser",
+				"DisplayName": "Form In Doomsday Zone",
+				"Variable": "DDZFormChooser",
+				"DefaultValue": "1",
+				"Category": "Gameplay Options",
+				"Options":
+				{
+					"0": "Super",
+					"1": "Hyper"
+				}
 			}
+		]
+	},
+	"OtherMods":
+	{
+		"eextra-slot-project-mighty":
+		{
+			"DisplayName": "Extra Slot Mighty",
+			"IsRequired": "0",
+			"Priority": "Higher"
 		},
+		"extra-slot-project-ray":
 		{
-			"InternalName": "SSonicStars",
-			"DisplayName": "Super Sonic Stars",
-			"Variable": "SuperSonicStars",
-			"DefaultValue": "1",
-			"Category": "Visual Options",
-			"Options":
-			{
-				"0": "Off",
-				"1": "On"
-			}
+			"DisplayName": "Extra Slot Ray",
+			"IsRequired": "0",
+			"Priority": "Higher"
 		},
+		"extra-slot-project-amy":
 		{
-			"InternalName": "STailsStars",
-			"DisplayName": "Super Tails Stars",
-			"Variable": "SuperTailsStars",
-			"DefaultValue": "0",
-			"Category": "Visual Options",
-			"Options":
-			{
-				"0": "Off",
-				"1": "On"
-			}
+			"DisplayName": "Extra Slot Amy",
+			"IsRequired": "0",
+			"Priority": "Higher"
 		},
+		"extra-character-slots-unlimited":
 		{
-			"InternalName": "SKnuxStars",
-			"DisplayName": "Super Knuckles Stars",
-			"Variable": "SuperKnuxStars",
-			"DefaultValue": "1",
-			"Category": "Visual Options",
-			"Options":
-			{
-				"0": "Off",
-				"1": "On"
-			}
-		},
-		{
-			"InternalName": "HSonicStars",
-			"DisplayName": "Hyper Sonic Stars",
-			"Variable": "HyperSonicStars",
-			"DefaultValue": "1",
-			"Category": "Visual Options",
-			"Options":
-			{
-				"0": "Off",
-				"1": "On"
-			}
-		},
-		{
-			"InternalName": "HKnuxStars",
-			"DisplayName": "Hyper Knuckles Stars",
-			"Variable": "HyperKnuxStars",
-			"DefaultValue": "0",
-			"Category": "Visual Options",
-			"Options":
-			{
-				"0": "Off",
-				"1": "On"
-			}
-		},
-		{
-			"InternalName": "HyperCost",
-			"DisplayName": "Hyper Ring Cost",
-			"Variable": "HyperRingCost",
-			"DefaultValue": "0",
-			"Category": "Gameplay Options",
-			"Options":
-			{
-				"0": "50 Rings",
-				"1": "75 Rings",
-				"2": "100 Rings"
-			}
-		},
-		{
-			"InternalName": "HyperRingDrain",
-			"DisplayName": "Hyper Ring Drain Speed",
-			"Variable": "HyperRingDrain",
-			"DefaultValue": "0",
-			"Category": "Gameplay Options",
-			"Options":
-			{
-				"0": "1x",
-				"1": "2x"
-			}
-		},
-		{
-			"InternalName": "DDZFormChooser",
-			"DisplayName": "Form In Doomsday Zone",
-			"Variable": "DDZFormChooser",
-			"DefaultValue": "1",
-			"Category": "Gameplay Options",
-			"Options":
-			{
-				"0": "Super",
-				"1": "Hyper"
-			}
+			"DisplayName": "Extra Slots Unlimited",
+			"IsRequired": "0",
+			"Priority": "Lower"
 		}
-	]
-}
+	}
 }
